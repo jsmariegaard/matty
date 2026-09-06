@@ -1,0 +1,3 @@
+# Denne side skal ikke indekseres nogen steder.
+User-agent: *
+Disallow: /

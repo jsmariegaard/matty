@@ -51,10 +51,10 @@ export default function album() {
     <div class="album">
       ${cards.map((c, i) => `
         <div class="pcard ${c.unlocked ? '' : 'locked'}" data-card="${c.id}">
-          <div class="pic">${c.unlocked ? portrait(i) : ''}
+          <div class="pic">${c.unlocked ? portrait(i, c) : ''}
             ${c.unlocked ? `<img data-photo="${c.id}" alt="${esc(c.name)}" style="display:none">` : ''}</div>
           <div class="cap">${c.unlocked ? esc(c.name) : '???'}
-            <small>${c.unlocked ? 'Låst op' : esc(reqText(c.req))}</small></div>
+            <small>${c.unlocked ? (c.own ? '🏠 Jeres egen hund' : 'Låst op') : esc(reqText(c.req))}</small></div>
         </div>`).join('')}
     </div>
 
@@ -93,7 +93,7 @@ export default function album() {
       const i = cards.indexOf(c);
       const o = overlay(`
         <div class="pic" style="aspect-ratio:1;border-radius:18px;overflow:hidden;background:var(--bg2);display:grid;place-items:center">
-          ${portrait(i)}<img data-photo="${c.id}" alt="${esc(c.name)}" style="display:none;width:100%;height:100%;object-fit:cover">
+          ${portrait(i, c)}<img data-photo="${c.id}" alt="${esc(c.name)}" style="display:none;width:100%;height:100%;object-fit:cover">
         </div>
         <h2 style="margin-top:14px">${esc(c.name)}</h2>
         <p>${esc(c.fact)}</p>

@@ -36,6 +36,9 @@ export const HOME_LINES = {
 // Billeder er valgfrie: læg <id>.jpg i assets/puppies/ så vises de automatisk.
 
 export const ALBUM = [
+  // Familiens egen hund. Står først og er der fra dag ét.
+  { id: 'chili', name: 'Chili', req: { t: 'level', v: 1 }, own: true, coat: 2, collar: '#c2352b',
+    fact: 'Det er jeres egen labrador. Hun holder med dig hele vejen gennem gangetabellen.' },
   { id: 'bella',  name: 'Bella',  req: { t: 'level', v: 1 },  fact: 'Labradoren stammer fra Newfoundland i Canada – ikke fra Labrador.' },
   { id: 'sofus',  name: 'Sofus',  req: { t: 'level', v: 2 },  fact: 'Labradorer har svømmehud mellem tæerne. Derfor svømmer de så godt.' },
   { id: 'luna',   name: 'Luna',   req: { t: 'streak', v: 3 }, fact: 'Halen kaldes en odderhale – den virker som et ror i vandet.' },
@@ -94,14 +97,14 @@ export const ACC_UNLOCKS = [
   { acc: 'crown',   name: 'Krone',          req: { t: 'gold', v: 40 } },
 ];
 
-/** Simpelt hvalpeportræt til album-kort uden foto. */
-export function portrait(seed = 0) {
+/** Simpelt hvalpeportræt til album-kort uden foto. Kortet kan vælge pels og halsbånd. */
+export function portrait(seed = 0, card = {}) {
   const coats = [
     ['#f6e0b4', '#e6c98c'], ['#eec27a', '#d9a45c'], ['#e6b163', '#c9913f'],
     ['#f8ecd2', '#e3d1ad'], ['#dfa15c', '#c98a3c'],
   ];
-  const pal = coats[seed % coats.length];
-  const collar = ['#e8543f', '#4a9bf5', '#8b6df0', '#4ec24e', '#ff6fae'][seed % 5];
+  const pal = coats[(card.coat ?? seed) % coats.length];
+  const collar = card.collar || ['#e8543f', '#4a9bf5', '#8b6df0', '#4ec24e', '#ff6fae'][seed % 5];
   return `<svg viewBox="0 0 120 120" aria-hidden="true">
     <circle cx="60" cy="62" r="52" fill="${pal[1]}" opacity=".25"/>
     <path d="M28 38 C 12 40 10 70 18 88 C 24 100 40 96 42 82 Z" fill="${pal[1]}"/>

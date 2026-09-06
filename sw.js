@@ -1,5 +1,5 @@
 // Offline-cache. Bump CACHE ved hver udgivelse, så telefonen henter det nye.
-const CACHE = 'matty-v1.0.1';
+const CACHE = 'matty-v1.0.2';
 
 const FILES = [
   './', './index.html', './manifest.webmanifest',
